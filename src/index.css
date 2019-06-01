@@ -5,3 +5,7 @@ input {
 input[type="checkbox"] {
     display: inline-block;
 }
+
+.stockless {
+    color: red;
+}
