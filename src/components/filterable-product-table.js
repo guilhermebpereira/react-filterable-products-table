@@ -22,15 +22,21 @@ export default class FilterableProductTable extends React.Component {
     }
 
     onChangeFilterText(event) {
+        const text = event.target.value;
+        const filteredProducts = this.filterByName(this.props.products, text);
+
         this.setState({
-            filterText: event.target.value
+            filterText: text,
+            filteredProducts: this.state.isStockOnly ? this.filterStocked(filteredProducts) : filteredProducts
         });
     }
 
     onChangeIsStockOnly(event) {
+        const isChecked = event.target.checked;
+
         this.setState({
-            isStockOnly: event.target.checked,
-            filteredProducts: event.target.checked ? this.filterStocked(this.state.filteredProducts) : this.filterByName(this.props.products, this.state.filterText)
+            isStockOnly: isChecked,
+            filteredProducts: isChecked ? this.filterStocked(this.state.filteredProducts) : this.filterByName(this.props.products, this.state.filterText)
         });
     }
 
