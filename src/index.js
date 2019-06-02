@@ -5,17 +5,23 @@ import './index.css';
 
 
 class App extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            products: []
+        };
+    }
 
     componentWillMount() {
         fetch('mock.json')
             .then((response) => response.json())
-            .then((response) => console.log("response: ", response))
+            .then((response) => this.setState({ products: response }))
             .catch((error) => console.log('error: ', error));
     }
 
     render() {
         return (
-            <FilterableProductTable/>
+            <FilterableProductTable products={this.state.products} />
         );
     }
 }
