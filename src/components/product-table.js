@@ -40,8 +40,8 @@ export default class ProductTable extends React.Component {
                         this.state.categories.map((category) => {
                             return (
                                 <ProductCategoryRow title={category} /> ,
-                                this.filterProductsByCategory(this.props.products, category).map((product) => {
-                                    return (<ProductRow product={product} />)
+                                this.filterProductsByCategory(this.props.products, category).map((product, index) => {
+                                    return (<ProductRow product={product} key={index} />)
                                 }));
                         })
                     }
